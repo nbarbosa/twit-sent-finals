@@ -1,0 +1,13 @@
+{
+  "name": "twtsentfinals-server",
+  "description": "Twitter Sentiment Finals Server",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "^4.13.1",
+    "mongodb": "^2.2.16"
+  },
+  "engines": {
+    "node": "4.2.1"
+  }
+}
