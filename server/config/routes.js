@@ -43,15 +43,13 @@ module.exports = function (app, db) {
     });
 
     app.get('/stats', function (req, res) {
-        db.collection('tweets').count({'sentiment':'positive'}, function (err, posCount){
-            if (err) throw err
-            db.collection('tweets').count({'sentiment':'negative'}, function (err, negCount){
-             if (err) throw err
+        db.collection('sentiment_counts').find({}).toArray(function (err, result) {
+                if (err) throw err
+                console.log(result);
                 res.json({
-                    'positive': posCount,
-                    'negative': negCount
+                    'positive': result[0]['positive'],
+                    'negative': result[0]['negative']
                 });
-            })
         });
     });
 

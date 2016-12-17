@@ -51,7 +51,7 @@ class StdOutListener(StreamListener):
                   'tweet': json_load,
                   'sentiment': sentiment
                   })
-             
+                db.sentiment_counts.update_one({}, { '$inc': {sentiment: 1} }, upsert=True)
         except KeyError:
           return True
 

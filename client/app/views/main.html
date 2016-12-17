@@ -1,7 +1,7 @@
 <center>
   <button ng-click="refresh()" ng-show="newTweets.length > 0">Load {{newTweets.length}} new tweet(s)</button>
   <br />
-  <div infinite-scroll='scrollTweets()' infinite-scroll-disabled='busy' infinite-immediate-check='false'>
+  <div infinite-scroll='scrollTweets()' infinite-scroll-disabled='busy' infinite-immediate-check='false' infinite-scroll-distance='1'>
   <div ng-repeat="tweet in tweets" class="tweet-container">
       <span class="sentiment positive" ng-show="tweet.sentiment == 'positive'">ʘ‿ʘ</span>
       <span class="sentiment negative" ng-show="tweet.sentiment == 'negative'">ಠ_ಠ</span>

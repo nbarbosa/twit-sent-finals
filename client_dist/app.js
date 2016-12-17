@@ -20,7 +20,7 @@ app.use(session({secret: 'FVG40geQBzMi3AJNSiki'}))
 app.use(helmet.crossdomain());
 app.use(helmet.csp({
     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", '*.twitter.com', 'twitter.com', '*.twimg.com', 'http://www.google-analytics.com'],
-    frameSrc: ["'self'", '*.twitter.com', 'twitter.com'],
+    frameSrc: ["'self'", '*.twitter.com', 'twitter.com', 'periscope.tv', '*.periscope.tv'],
     imgSrc: ["'self'", '*.twitter.com', 'data:', 'http://www.google-analytics.com', 'twitter.com', '*.twimg.com'],
     fontSrc: ["'self' data:", 'https://fonts.googleapis.com', 'http://themes.googleusercontent.com','https://fonts.gstatic.com']
 }));

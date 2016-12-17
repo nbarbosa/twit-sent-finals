@@ -7,15 +7,15 @@ angular.module('clientApp')
   	$scope.newTweets = [];
 
  	$scope.refresh = function () {
-	 		for (var i = $scope.newTweets.length - 1; i >= 0; i--) {	 
-	 			console.log($scope.newTweets[i]);				
+	 		for (var i = 0; i < $scope.newTweets.length; i++) {
+	 			console.log($scope.newTweets[i]);	
 	 			$scope.tweets.unshift($scope.newTweets[i]);
 	 		}
 	 		$scope.newTweets = []
  	};
 
  	$scope.scrollTweets = function () {
-		if ($scope.tweets.length == 0) return;
+		if ($scope.tweets.length == 0 || $scope.busy) return;
 		$scope.loadTweets()
  	};
 
@@ -26,12 +26,13 @@ angular.module('clientApp')
 		}).then(function successCallback(response) {	
 		    $rootScope.positiveCount = response.data.positive;
 		    $rootScope.negativeCount = response.data.negative;
+		    $rootScope.hasLoadedStats = true;
 		  }, function errorCallback(response) {
 		    console.log(response);
 		  });
  	};
   	$scope.loadTweets = function (when, cb) {
-  		
+		$scope.busy = true;  		
   		when = when || 'before';
   		var ts = ''
 
@@ -46,8 +47,6 @@ angular.module('clientApp')
   				}
   			}
   		}
-
-  		$scope.busy = true;
 
   	    $http({
 		  method: 'GET',
@@ -65,9 +64,9 @@ angular.module('clientApp')
 		    			}
 					}
 				}
-		    $scope.busy = false;
 		    $rootScope.total = $scope.tweets.length;
 		    cb()
+		    $scope.busy = false;
 		  }, function errorCallback(response) {
 		  	console.log(response);
 		  });	
